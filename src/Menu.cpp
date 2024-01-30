@@ -508,38 +508,6 @@ namespace DX11_Base
                 }
 
             }
-            if (ImGui::Button("Destroy All Guilds", ImVec2(ImGui::GetContentRegionAvail().x - 3, 20))) {
-                SDK::TArray<SDK::AActor*> T = Config.GetUWorld()->PersistentLevel->Actors;
-
-                for (int i = 0; i < T.Count(); i++)
-                {
-                    SDK::AActor* Actor = T[i];
-
-                    if (Actor == nullptr) continue;
-
-                    if (Actor->IsA(SDK::APalMapObject::StaticClass())) {
-                        SDK::APalMapObject* Object = (SDK::APalMapObject*)Actor;
-
-                        Config.GetPalPlayerCharacter()->GetPalPlayerController()->Transmitter->MapObject->RequestDismantleObject_ToServer(Object->ModelInstanceId);
-                    }
-                    else if (Actor->IsA(SDK::APalGuildInfo::StaticClass())) {
-                        SDK::APalGuildInfo* GInfo = (SDK::APalGuildInfo*)Actor;
-
-                        auto bc1 = GInfo->Guild->MapObjectInstanceIds_BaseCampPoint;
-                        auto bc2 = GInfo->Guild->BaseCampIds;
-
-                        for (int i = 0; i < bc1.Count(); i++) {
-                            GInfo->Guild->RequestDismantleBaseCamp(bc1[i]);
-                            Config.GetPalPlayerCharacter()->GetPalPlayerController()->Transmitter->MapObject->RequestDismantleObject_ToServer(bc1[i]);
-                        }
-
-                        for (int i = 0; i < bc2.Count(); i++) {
-                            GInfo->Guild->RequestDismantleBaseCamp(bc2[i]);
-                            Config.GetPalPlayerCharacter()->GetPalPlayerController()->Transmitter->MapObject->RequestDismantleObject_ToServer(bc2[i]);
-                        }
-                    }
-                }
-            }
         }
 
         void TABTeleporter()
