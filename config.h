@@ -12,6 +12,8 @@ public:
 	//offsets
 	DWORD64 ClientBase = 0;
 	DWORD64 offset_Tick = 0x2AB1DC0;//APalPlayerCharacter::Tick
+	DWORD64 offset_AddStatus = 0x7EA520; //UPalNetworkIndividualComponent::AddPlayerCharacterStatusPoint_ToServer
+	DWORD64 offset_CatchRate = 0x26E70C2; //APalCaptureJudgeObject::ChallengeCapture
 	//check
 	bool IsESP = false;
 	bool IsFullbright = false;
@@ -24,25 +26,36 @@ public:
 	bool IsInfinAmmo = false;
 	bool IsToggledFly = false;
 	bool IsMuteki = false;
+	bool IsAdmin = true;
 	bool IsMonster = false;
 	bool IsQuick = false;
+	bool IsRevive = false;
+	bool isCatchRate = false;
 	bool matchDbItems = true;
 	bool isDebugESP = false;
 	bool bisOpenManager = false;
+	bool filterCharacters = true;
 	bool filterPlayer = false;
 	bool filterPal = false;
+	bool filterGuilds = false;
+	bool filterMapParts = false;
 	bool bisRandomName = false;
 	bool bisTeleporter = false;
-	float SpeedModiflers = 1.0f;
+
 	//def and value
+	float SpeedModiflers = 1.0f;
 	float mDebugESPDistance = 5.0f;
 	int DamageUp = 0;
 	int DefuseUp = 0;
 	int EXP = 0;
 	int Item = 0;
+	int PalRank = 0;
+	int MaxWeight = 9999999;
 	float Pos[3] = { 0,0,0 };
 	char ItemName[255];
 	char inputTextBuffer[255] = "";
+	/*static SDK::UWorld* gWorld;*/
+	int PalLvl = 1;
 	SDK::UWorld* gWorld = nullptr;
 	SDK::APalPlayerCharacter* localPlayer = NULL;
 	SDK::TArray<SDK::APalPlayerCharacter*> AllPlayers = {};

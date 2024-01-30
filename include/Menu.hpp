@@ -22,7 +22,7 @@ namespace DX11_Base {
 		//	FORWARD DECLARE FUNCTIONS
 		void Draw();
 		void MainMenu();
-		void EntityList();
+		void ManagerMenu();
 		void HUD(bool* p_open);
 		void Loops();
 
